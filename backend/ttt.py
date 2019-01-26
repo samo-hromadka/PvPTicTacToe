@@ -30,14 +30,28 @@ def new_game():
 @app.route('/game/<int:gameid>/register_user')
 def register_user(gameid):
     game = get_game_or_404(gameid)
-    game.add_user(randint(0,100))
+    userid = game.add_user()
     return redirect('game/' + str(gameid))
 
 
 @app.route('/game/<int:gameid>/update')
 def update(gameid):
-    
     return 'TODO'
+
+
+@app.route('/game/<int:gameid>/vote?x=<int:x>&y=<int:y>')
+def vote(gameid, userid, x, y):
+    game = get_game_or_404(gameid)
+    userid = 0
+    game.add_vote(userid, x, y)
+
+
+@app.route('/game/<int:gameid>/next_round')
+def next_round(gameid):
+    game = get_game_or_404()
+    game.next_round()
+    return redirect('/game/' + str(gameid))
+
 
 
 
