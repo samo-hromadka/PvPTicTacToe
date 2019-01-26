@@ -1,5 +1,8 @@
 import React from "react";
 
+import "./css/main.css";
+import "./css/util.css";
+
 class Div1 extends React.Component {
   render() {
     return (
