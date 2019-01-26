@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+ 
+{% block content %}
+
+<h3>Invite your friend by sharing: {{game.gameid}}</h3>
+HERE COMES THE GRID
+
+Team 1: {{game.get_team0_size()}}
+Team 2: {{game.get_team1_size()}}
+
+{% endblock %}
