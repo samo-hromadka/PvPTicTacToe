@@ -13,6 +13,9 @@ import "./vendor/css-hamburgers/hamburgers.min.css";
 
 import Background from './images/bg-01.jpg'
 
+import "./css/main.css";
+import "./css/util.css";
+
 class Div1 extends React.Component {
   render() {
     return (

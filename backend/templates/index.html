@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+ 
+{% block content %}
+<form>
+  <label>Which game you want to join?</label>
+  <input type="number" name="gameid">
+  <input type="submit">
+</form>
+
+<form action='new_game'>
+  <label>Create new game</label>
+  <input type="submit" > 
+</form>
+{% endblock %}
