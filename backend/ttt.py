@@ -80,11 +80,13 @@ def home():
 
 @app.route('/game/<int:gameid>')
 def game(gameid):
+    print("Hey")
     game =  get_game_or_404(gameid)
     return render_template('game.html', game=game)
 
 @app.route('/game')
 def new_game():
+    print("Hi")
     gameid = randint(1,999999)
     games[gameid] = Game(3,3, gameid)
     return jsonify({'gameid':gameid, 'squares': game.get_array(),'votes':game.votes, 'current_player': game.current_player, 'win':game.win})
