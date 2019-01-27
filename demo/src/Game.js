@@ -22,7 +22,7 @@ class Game extends React.Component {
   }
 
   vote(i) {
-    this.calculateWinner(this.state.squares);
+    //this.calculateWinner(this.state.squares);
     this.sendVote(i);
     this.refreshBoard();
   }
@@ -51,21 +51,58 @@ class Game extends React.Component {
     const b = this.state.votes;
     b[i] += 1;
     this.setState({ votes: b });
-    console.log(
-      "http://localhost:5000/game/" + this.state.gameid + "/vote?i=" + i
-    );
     request.get(
-      "http://localhost:5000/game/" + this.state.gameid + "/vote?i=" + i
+      "http://localhost:5000/game/" +
+        this.state.gameid +
+        "/vote?i=" +
+        i +
+        "&userid=" +
+        this.state.userid
     );
   }
 
   refreshBoard() {
-    const newBoard = this.callRefresh();
-    if (newBoard == "wait") {
-      this.refreshBoard();
-    } else {
-      this.setState({ timer: 10 });
-    }
+    // const newBoard = this.callRefresh();
+    // if (newBoard == "wait") {
+    //   this.refreshBoard();
+    // } else {
+    //   this.setState({ timer: 10 });
+    // }
+    console.log(
+      "http://localhost:5000/game/" +
+        this.state.gameid +
+        "/" +
+        this.state.userid +
+        "/update"
+    );
+    let self = this;
+    request.get(
+      "http://localhost:5000/game/" +
+        this.state.gameid +
+        "/" +
+        this.state.userid +
+        "/update",
+      function(error, response, body) {
+        console.log("error:", error); // Print the error if one occurred
+        console.log("statusCode:", response && response.statusCode); // Print the response status code if a response was received
+        console.log("body:", body);
+        console.log(JSON.parse(body)["squares"]);
+        let sqs = JSON.parse(body)["squares"];
+        let sqs2 = Array(9).fill(null);
+        for (let i = 0; i < 3; i++) {
+          for (let j = 0; j < 3; j++) {
+            if (sqs[i][j] == 0) {
+              sqs2[i * 3 + j] = null;
+            } else if (sqs[i][j] == 1) {
+              sqs2[i * 3 + j] = "O";
+            } else {
+              sqs2[i * 3 + j] = "X";
+            }
+          }
+        }
+        self.setState({ squares: sqs2 });
+      }
+    );
   }
 
   callRefresh() {
