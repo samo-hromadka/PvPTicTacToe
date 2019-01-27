@@ -65,9 +65,18 @@ from words import words
 from random import randint
 from game import Game
 from time import time, sleep
+from flask_cors import CORS, cross_origin
+
+
 app = Flask(__name__)
 
+app.config['CORS_HEADERS'] = 'Content-Type'
+app.config['SECRET_KEY'] = 'yolo2018'
+
+cors = CORS(app)
+
 games = {}
+SIZE = 3
 
 def update_times():
     for gameid, game in games.items():
@@ -88,13 +97,16 @@ def home():
 
 @app.route('/game/<int:gameid>')
 def game(gameid):
+    print("Hey")
     game =  get_game_or_404(gameid)
     return render_template('game.html', game=game)
 
 @app.route('/game')
 def new_game():
-    gameid = randint(1,999999)
-    games[gameid] = Game(3,3, gameid)
+    print("Hi")
+    #gameid = randint(1,999999)
+    gameid = 5
+    games[gameid] = Game(SIZE, SIZE, gameid)
     game = get_game_or_404(gameid)
     return jsonify({'gameid':gameid, 'squares': game.get_array(),'votes':game.votes, 'current_player': game.current_player, 'win':game.win})
 
@@ -118,11 +130,12 @@ def update(gameid):
 
 
 @app.route('/game/<int:gameid>/vote')
-def vote(gameid,userid ):
-    x = int(request.args['x'])
-    y = int(request.args['y'])
-    userid = int(request.args['userid'])
+def vote(gameid, userid):
+    i= int(request.args['i'])
     game = get_game_or_404(gameid)
+    x = i % game.x
+    y = i // game.x
+    userid = int(request.args['userid'])
     game.add_vote(userid, x, y)
     return jsonify({'success':True})
 
