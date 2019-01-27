@@ -122,6 +122,9 @@ def register_user(gameid):
 def update(gameid, userid):
     update_times()
     game = get_game_or_404(gameid)
+    print(str(game.players))
+    print(str(game.players[game.current_player]))
+
     if userid in game.players[game.current_player]: 
         votes = game.votes
     else:
@@ -133,8 +136,8 @@ def update(gameid, userid):
 def vote(gameid):
     i= int(request.args['i'])
     game = get_game_or_404(gameid)
-    x = i % game.x
-    y = i // game.x
+    x = i // game.x
+    y = i % game.x
     userid = int(request.args['userid'])
     game.add_vote(userid, x, y)
     return jsonify({'success':True})
