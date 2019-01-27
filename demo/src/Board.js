@@ -1,6 +1,7 @@
 import React from "react";
 import Square from "./Square";
 import Background from './images/bg-01.jpg';
+import {ProgressBar} from 'react-bootstrap';
 
 import "./css/main.css";
 import "./Square.css";
@@ -16,7 +17,20 @@ const contact3FormTitle = {
   paddingBottom: "70px"
 }
 
+const now = 15;
+
+
 class Board extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      getVotes: props.getVotes
+    };
+    console.log(props);
+    console.log(props.getVotes);
+
+  }
   renderSquare(i) {
     return (
       <Square
@@ -25,6 +39,7 @@ class Board extends React.Component {
         onClick={() => this.props.onClick(i)}
       />
     );
+
   }
 
   render() {
@@ -42,6 +57,8 @@ class Board extends React.Component {
             <span className="contact-form-title" style={contact3FormTitle}>
               Code:
             </span>
+            <ProgressBar bsStyle="info" now={60} />
+            <div style={{marginBottom:"1em"}}></div>
               <div className="board-row" style={{display: "flex", flexDirection:"row", align:"center"}}>
                 {this.renderSquare(0)}
                 {this.renderSquare(1)}
