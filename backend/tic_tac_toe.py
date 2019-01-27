@@ -54,6 +54,11 @@ class Tic_tac_toe():
                     if field[i,j]==1 and field[i+1,j+1]==1 and field[i+2,j+2]==1:
                         win.append('player1')
                 except: pass
+            
+                try:
+                    if field[i,j]==1 and field[i+1,j-1]==1 and field[i+2,j-2]==1:
+                        win.append('player1')
+                except: pass
                 #player 2
                 try:
                     if field[i,j]==-1 and field[i+1,j]==-1 and field[i+2,j]==-1:
@@ -67,6 +72,11 @@ class Tic_tac_toe():
             
                 try:
                     if field[i,j]==-1 and field[i+1,j+1]==-1 and field[i+2,j+2]==-1:
+                        win.append('player2')
+                except: pass
+                
+                try:
+                    if field[i,j]==-1 and field[i+1,j-1]==-1 and field[i+2,j-2]==-1:
                         win.append('player2')
                 except: pass
         
