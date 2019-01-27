@@ -119,7 +119,7 @@ def register_user(gameid):
 
 
 @app.route('/game/<int:gameid>/<int:userid>/update')
-def update(gameid):
+def update(gameid, userid):
     update_times()
     game = get_game_or_404(gameid)
     if userid in game.players[game.current_player]: 
@@ -130,7 +130,7 @@ def update(gameid):
 
 
 @app.route('/game/<int:gameid>/vote')
-def vote(gameid, userid):
+def vote(gameid):
     i= int(request.args['i'])
     game = get_game_or_404(gameid)
     x = i % game.x
