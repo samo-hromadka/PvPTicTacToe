@@ -7,14 +7,11 @@
 
 import numpy as np
 
-x = 4
-y = 4
-
-class ttt():
+class Tic_tac_toe():
     def __init__(self,x,y):
         self.field = np.zeros([x,y])
-        self.x = 3
-        self.y = 3
+        self.x = x
+        self.y = y
     
     def is_legal(self,x,y):
         if self.field[x,y]==0:
@@ -25,9 +22,9 @@ class ttt():
         if not self.is_legal(x,y):
             print('Not legal move')
             return
-        if player == 1:
+        if player == 0:
             self.field[x,y] = 1
-        elif player ==2:
+        elif player ==1:
             self.field[x,y] = -1
         
         # comment these later
@@ -85,11 +82,11 @@ class ttt():
         
         if len(win)>1: print('Warning more than one winner')
         if 'player1' in win: 
-            print('player 1 won')
-            return 'player1'
+            print('player 0 won')
+            return 0
         elif 'player2' in win: 
-            print('player 2 won')
-            return('player2')
+            print('player 1 won')
+            return 1
         else:
             return(None)
             
