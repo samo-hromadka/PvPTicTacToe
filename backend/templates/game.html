@@ -3,7 +3,9 @@
 {% block content %}
 
 <h3>Invite your friend by sharing: <code>{{game.gameid}}</code></h3>
-HERE COMES THE GRID
+{{game.get_array()}}
+<br>
+{{game.votes}}
 
 
 <ul>

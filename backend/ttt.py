@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, abort
+from flask import Flask, render_template, redirect, abort, request
 from words import words
 from random import randint
 from game import Game
@@ -39,16 +39,19 @@ def update(gameid):
     return 'TODO'
 
 
-@app.route('/game/<int:gameid>/vote?x=<int:x>&y=<int:y>')
-def vote(gameid, userid, x, y):
+@app.route('/game/<int:gameid>/vote')
+def vote(gameid,userid =0):
+    x = int(request.args['x'])
+    y = int(request.args['y'])
     game = get_game_or_404(gameid)
     userid = 0
     game.add_vote(userid, x, y)
+    return redirect('/game/' + str(gameid))
 
 
 @app.route('/game/<int:gameid>/next_round')
 def next_round(gameid):
-    game = get_game_or_404()
+    game = get_game_or_404(gameid)
     game.next_round()
     return redirect('/game/' + str(gameid))
 
