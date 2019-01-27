@@ -1,0 +1,10 @@
+.square-main {
+  z-index: 30;
+  color: lightblue;
+  border-radius: 0px;
+  padding: 0px 0px;
+  height: 130px;
+  width: 130px;
+  cursor: pointer;
+  font-size: 60px;
+}
