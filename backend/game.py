@@ -37,6 +37,7 @@ class Game:
     def add_vote(self, userid, x, y):
         if userid in self.potential_voters[self.current_player]:
             self.votes[x][y] += 1
+            self.potential_voters[self.current_player] = not self.potential_voters[self.current_player]
         else:
             pass
 

@@ -42,7 +42,7 @@ class Div1 extends React.Component {
         <div className="container-contact3">
           <div className="wrap-contact3">
             <form className="contact3-form validate-form">
-              <span className="contact3-form-title">Tic Tac Toe</span>
+              <span className="contact3-form-title">Team Tac Toe</span>
               <div className="wrap-contact3-form-radio">
                 <div className="contact3-form-radio m-r-42">
                   <input

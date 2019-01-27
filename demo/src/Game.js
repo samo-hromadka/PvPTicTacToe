@@ -14,7 +14,6 @@ class Game extends React.Component {
       gameid: 5,
       userid: null
     };
-    this.componentDidMount.bind({ self: this });
   }
 
   handleClick(i) {
@@ -25,6 +24,10 @@ class Game extends React.Component {
     //this.calculateWinner(this.state.squares);
     this.sendVote(i);
     this.refreshBoard();
+  }
+
+  getVotes() {
+    return this.state.votes;
   }
 
   componentDidMount() {
@@ -172,6 +175,7 @@ class Game extends React.Component {
           <Board
             squares={this.state.squares}
             onClick={i => this.handleClick(i)}
+            getVotes={this.getVotes()}
           />
         </div>
         <div className="game-info">
