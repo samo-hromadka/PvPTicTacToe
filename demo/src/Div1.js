@@ -1,4 +1,5 @@
 import React from "react";
+
 import "./css/main.css";
 
 import "./vendor/bootstrap/css/bootstrap.min.css";
@@ -11,9 +12,8 @@ import "./vendor/animate/animate.css";
 
 import "./vendor/css-hamburgers/hamburgers.min.css";
 
-import Background from './images/bg-01.jpg'
+import Background from './images/bg-01.jpg';
 
-import "./css/main.css";
 import "./css/util.css";
 
 class Div1 extends React.Component {
@@ -29,7 +29,7 @@ class Div1 extends React.Component {
           <div className="wrap-contact3">
             <form className="contact3-form validate-form">
               <span className="contact3-form-title">
-                Join existing game or create new game
+                Tic Tac Toe
               </span>
               <div className="wrap-contact3-form-radio">
                 <div className="contact3-form-radio m-r-42">

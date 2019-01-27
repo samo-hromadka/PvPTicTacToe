@@ -78,7 +78,7 @@ class Game extends React.Component {
     return null;
   }
 
-  render() {
+    render() {
     console.log(this.props.match.params.id);
     const winner = this.calculateWinner(this.state.squares);
 
