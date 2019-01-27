@@ -17,8 +17,8 @@ const contact3FormTitle = {
   paddingBottom: "70px"
 }
 
-const now = 15;
-
+var time = 15;
+const now = time*(100/15);
 
 class Board extends React.Component {
 
@@ -57,7 +57,9 @@ class Board extends React.Component {
             <span className="contact-form-title" style={contact3FormTitle}>
               Code:
             </span>
-            <ProgressBar bsStyle="info" now={60} />
+
+            <ProgressBar now={now} label={`${time}s`} />
+
             <div style={{marginBottom:"1em"}}></div>
               <div className="board-row" style={{display: "flex", flexDirection:"row", align:"center"}}>
                 {this.renderSquare(0)}
