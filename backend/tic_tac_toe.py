@@ -14,7 +14,7 @@ class Tic_tac_toe():
         self.field = [[0 for _ in range(self.x)] for _ in range(self.y)]
     
     def is_legal(self,x,y):
-        if self.field[x,y]==0:
+        if self.field[x][y]==0:
             return True
         else: return False
         
@@ -23,9 +23,9 @@ class Tic_tac_toe():
             print('Not legal move')
             return
         if player == 0:
-            self.field[x,y] = 1
+            self.field[x][y] = 1
         elif player ==1:
-            self.field[x,y] = -1
+            self.field[x][y] = -1
         
         # comment these later
         #result = self.is_win()
