@@ -9,9 +9,9 @@ import numpy as np
 
 class Tic_tac_toe():
     def __init__(self,x,y):
-        self.field = np.zeros([x,y])
         self.x = x
         self.y = y
+        self.field = [[0 for _ in range(self.x)] for _ in range(self.y)]
     
     def is_legal(self,x,y):
         if self.field[x,y]==0:
@@ -41,42 +41,42 @@ class Tic_tac_toe():
             for j in range(self.y):
                 #player 1
                 try:
-                    if field[i,j]==1 and field[i+1,j]==1 and field[i+2,j]==1:
+                    if field[i][j]==1 and field[i+1][j]==1 and field[i+2][j]==1:
                         win.append('player1')
                 except: pass
                 
                 try:
-                    if field[i,j]==1 and field[i,j+1]==1 and field[i,j+2]==1:
+                    if field[i][j]==1 and field[i][j+1]==1 and field[i][j+2]==1:
                         win.append('player1')
                 except: pass
             
                 try:
-                    if field[i,j]==1 and field[i+1,j+1]==1 and field[i+2,j+2]==1:
+                    if field[i][j]==1 and field[i+1][j+1]==1 and field[i+2][j+2]==1:
                         win.append('player1')
                 except: pass
             
                 try:
-                    if field[i,j]==1 and field[i+1,j-1]==1 and field[i+2,j-2]==1:
+                    if field[i][j]==1 and field[i+1][j-1]==1 and field[i+2][j-2]==1:
                         win.append('player1')
                 except: pass
                 #player 2
                 try:
-                    if field[i,j]==-1 and field[i+1,j]==-1 and field[i+2,j]==-1:
+                    if field[i][j]==-1 and field[i+1][j]==-1 and field[i+2][j]==-1:
                         win.append('player2')
                 except: pass
                 
                 try:
-                    if field[i,j]==-1 and field[i,j+1]==-1 and field[i,j+2]==-1:
+                    if field[i][j]==-1 and field[i][j+1]==-1 and field[i][j+2]==-1:
                         win.append('player2')
                 except: pass
             
                 try:
-                    if field[i,j]==-1 and field[i+1,j+1]==-1 and field[i+2,j+2]==-1:
+                    if field[i][j]==-1 and field[i+1][j+1]==-1 and field[i+2][j+2]==-1:
                         win.append('player2')
                 except: pass
                 
                 try:
-                    if field[i,j]==-1 and field[i+1,j-1]==-1 and field[i+2,j-2]==-1:
+                    if field[i][j]==-1 and field[i+1][j-1]==-1 and field[i+2][j-2]==-1:
                         win.append('player2')
                 except: pass
         

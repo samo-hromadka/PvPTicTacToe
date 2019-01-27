@@ -13,6 +13,7 @@ class Game:
         self.tic_tac_toe = Tic_tac_toe(self.x, self.y)
         self.win = None
 
+
     def get_team0_size(self):
         return len(self.players[0])
 
@@ -56,6 +57,8 @@ class Game:
         self.votes = [[0 for _ in range(self.x)] for _ in range(self.y)]
         self.potential_voters = self.players
         self.current_player = (self.current_player + 1) % 2
+
+
 
     def get_array(self):
         return self.tic_tac_toe.get_array()
