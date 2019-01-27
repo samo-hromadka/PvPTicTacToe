@@ -10,6 +10,7 @@ class Game:
         self.players = [[],[]]
         self.potential_voters = self.players
         self.votes = [[0 for _ in range(self.x)] for _ in range(self.y)]
+        self.votes_trap = [[0 for _ in range(self.x)] for _ in range(self.y)]
         self.tic_tac_toe = Tic_tac_toe(self.x, self.y)
         self.win = None
 
@@ -38,6 +39,8 @@ class Game:
         else:
             pass
 
+        if userid in self.potential_voters[(self.current_player + 1) % 2]:
+            self.votes_trap[x][y] += 1
 
     def next_round(self):
         #get where to go
@@ -48,9 +51,24 @@ class Game:
                 if val > maximum:
                     maximum = val
                     maximum_index = (x,y)
+
+        maximum_index_trap = (0,0)
+        maximum_trap = 0
+        for x, arr in enumerate(self.votes_trap):
+            for y, val in enumerate(arr):
+                if val > maximum_trap:
+                    maximum_trap = val
+                    maximum_index_trap = (x,y)
+
         #make the move
         print (maximum_index)
-        self.tic_tac_toe.play(self.current_player, maximum_index[0], maximum_index[1])
+        print (maximum_index_trap)
+
+        if maximum_index==maximum_index_trap):
+            self.tic_tac_toe.play((self.current_player + 1) % 2, maximum_index[0], maximum_index[1])
+        else:
+            self.tic_tac_toe.play(self.current_player, maximum_index[0], maximum_index[1])
+            
         #check if win
         self.win  = self.tic_tac_toe.is_win()
         self.votes = [[0 for _ in range(self.x)] for _ in range(self.y)]
