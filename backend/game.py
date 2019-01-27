@@ -64,3 +64,8 @@ class Game:
     def get_array(self):
         return self.tic_tac_toe.get_array()
 
+    def team_of_user(self,userid):
+        if userid in self.players[0]:
+            return 0
+        else: 
+            return 1

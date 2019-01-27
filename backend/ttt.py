@@ -106,19 +106,23 @@ def register_user(gameid):
     return jsonify({'userid':userid})
 
 
-@app.route('/game/<int:gameid>/update')
+@app.route('/game/<int:gameid>/<int:userid>/update')
 def update(gameid):
     update_times()
     game = get_game_or_404(gameid)
-    return jsonify({'squares': game.get_array(),'votes':game.votes, 'current_player': game.current_player, 'win':game.win, 'time_left': int(game.next_round_time-time())})
+    if userid in game.players[game.current_player]: 
+        votes = game.votes
+    else:
+        votes = [[0 for _ in range(game.x)] for _ in range(game.y)]
+    return jsonify({'squares': game.get_array(),'votes':votes, 'current_player': game.current_player, 'my_team': game.team_of_user(userid),  'win':game.win, 'time_left': int(game.next_round_time-time())})
 
 
 @app.route('/game/<int:gameid>/vote')
-def vote(gameid,userid =0):
+def vote(gameid,userid ):
     x = int(request.args['x'])
     y = int(request.args['y'])
+    userid = int(request.args['userid'])
     game = get_game_or_404(gameid)
-    userid = 0
     game.add_vote(userid, x, y)
     return jsonify({'success':True})
 
