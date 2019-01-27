@@ -1,5 +1,6 @@
 from random import randint
 from tic_tac_toe import Tic_tac_toe
+from time import time
 
 class Game:
     def __init__(self, x, y, gameid):
@@ -12,7 +13,7 @@ class Game:
         self.votes = [[0 for _ in range(self.x)] for _ in range(self.y)]
         self.tic_tac_toe = Tic_tac_toe(self.x, self.y)
         self.win = None
-
+        self.next_round_time=time() + 20
 
     def get_team0_size(self):
         return len(self.players[0])
@@ -42,6 +43,7 @@ class Game:
 
     def next_round(self):
         #get where to go
+        self.next_round_time = time() + 20
         maximum_index = (0,0)
         maximum = 0
         for x, arr in enumerate(self.votes):
@@ -57,7 +59,6 @@ class Game:
         self.votes = [[0 for _ in range(self.x)] for _ in range(self.y)]
         self.potential_voters = self.players
         self.current_player = (self.current_player + 1) % 2
-
 
 
     def get_array(self):

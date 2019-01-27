@@ -64,9 +64,17 @@ from flask import Flask, render_template, redirect, abort, request, jsonify
 from words import words
 from random import randint
 from game import Game
+from time import time, sleep
 app = Flask(__name__)
 
 games = {}
+
+def update_times():
+    for gameid, game in games.items():
+        if game.next_round_time <= time():
+            game.next_round()
+    sleep(1)
+
 
 def get_game_or_404(gameid):
     if gameid in games:
@@ -89,6 +97,7 @@ def new_game():
     print("Hi")
     gameid = randint(1,999999)
     games[gameid] = Game(3,3, gameid)
+    game = get_game_or_404(gameid)
     return jsonify({'gameid':gameid, 'squares': game.get_array(),'votes':game.votes, 'current_player': game.current_player, 'win':game.win})
 
 
@@ -101,8 +110,9 @@ def register_user(gameid):
 
 @app.route('/game/<int:gameid>/update')
 def update(gameid):
+    update_times()
     game = get_game_or_404(gameid)
-    return jsonify({'squares': game.get_array(),'votes':game.votes, 'current_player': game.current_player, 'win':game.win})
+    return jsonify({'squares': game.get_array(),'votes':game.votes, 'current_player': game.current_player, 'win':game.win, 'time_left': int(game.next_round_time-time())})
 
 
 @app.route('/game/<int:gameid>/vote')
