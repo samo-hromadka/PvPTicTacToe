@@ -1,8 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import "./css/main.css";
-import "./css/util.css";
 
 import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 import Game from "./Game";

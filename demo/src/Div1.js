@@ -1,4 +1,17 @@
 import React from "react";
+import "./css/main.css";
+
+import "./vendor/bootstrap/css/bootstrap.min.css";
+
+import "./fonts/font-awesome-4.7.0/css/font-awesome.min.css";
+
+import "./vendor/select2/select2.min.css";
+
+import "./vendor/animate/animate.css";
+
+import "./vendor/css-hamburgers/hamburgers.min.css";
+
+import Background from './images/bg-01.jpg'
 
 class Div1 extends React.Component {
   render() {
@@ -6,7 +19,7 @@ class Div1 extends React.Component {
       <div
         className="bg-contact3"
         style={{
-          backgroundImage: 'url("images/bg-01.jpg")'
+          backgroundImage: "url(" + Background + ")"
         }}
       >
         <div className="container-contact3">
